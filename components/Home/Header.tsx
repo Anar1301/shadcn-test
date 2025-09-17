@@ -1,188 +1,32 @@
-import { Input } from "@/components/ui/input";
-import { ThemeToggler } from "../Home/ThemeToggler";
+import { ModeToggle } from "./Theme";
+import { Genrepage } from "./Genre";
+import { SearchInput } from "@/components/ui/input";
+import { IoIosSearch } from "react-icons/io";
+import Link from "next/link";
+import { SearchSection } from "./SearchSection";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown, ChevronRight } from "lucide-react";
-export const Header = () => {
+export async function Header() {
   return (
-    <div className=" flex gap-5 justify-between m-auto w-360">
-      <div className="flex">
-        <img className="h-5 w-5" src="logo.svg" />
-        <img className="h-4" src="logo2.png" />
+    <div className="w-[1280px] h-[60px] flex justify-between items-center ml-20 m-auto">
+      <div className="flex gap-2">
+        <img className="w-[16px] h-[16px] " src="logo.svg" alt="" />
+        <h2 className="text-base font-bold leading-4 text-indigo-700">
+          <Link href="/">Movie Z</Link>
+        </h2>
       </div>
       <div className="flex gap-3">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="border-1 rounded-[6px] w-24 flex "><ChevronDown/>Genres</button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Genres</DropdownMenuLabel>
-            <span>See lists of movies by genre</span>
-            <DropdownMenuSeparator />
-            <div className="flex">
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Action <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Adventure <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Animation <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Biography <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Comedy <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-            </div>
-            <div className="flex">
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Crime <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Documentary <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Drama <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Family <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="border-1 rounded-full font-semibold flex items-center">
-                  Fantasy <ChevronRight />
-                </button>
-              </DropdownMenuItem>
-            </div>
-        
-        
-       
-  
-      <div className="flex">
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Flim-Noir <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Game-Show <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            History <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Horror <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Music <ChevronRight />
-          </button>
-        </DropdownMenuItem>
+        <Genrepage></Genrepage>
+        <div className="flex items-center gap-2 h-[36px] w-[355px] border rounded-md">
+          <IoIosSearch className="ml-2" />
+          <SearchInput
+            type="search"
+            placeholder="Search ..."
+            className="w-[379px] h-[36px] border-0"
+          />
+          <SearchSection />
+        </div>
       </div>
-      <div className="flex">
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Musical <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Mystery <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            News <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Reality-TV <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Romance <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-      </div>
-      <div className="flex">
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Sci-Fi <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Short <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Sport <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Talk-Show <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            Thriller <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button className="border-1 rounded-full font-semibold flex items-center">
-            War <ChevronRight />
-          </button>
-        </DropdownMenuItem>
-      </div>
-      <DropdownMenuItem>
-        <button className="border-1 rounded-full font-semibold flex items-center">
-          Western <ChevronRight />
-        </button>
-      </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <Input className="w-95" />
-      </div>
-      <ThemeToggler />
-      
-       
+      <ModeToggle></ModeToggle>
     </div>
   );
-};
- 
+}
