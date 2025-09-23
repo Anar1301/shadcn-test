@@ -5,14 +5,14 @@ import Upcoming from "@/components/home/Upcoming";
 
 import TopRated from "@/components/home/TopRated";
 import Popular from "@/components/home/Popular";
-import { PaginationDemo } from "@/components/home/Paginition";
 
 import { getMoviesList } from "../../utils/get-data";
 
 import { movieResponseType } from "../../types";
 
 const upcomingMovies: movieResponseType = await getMoviesList("now_playing");
-
+const topRatedMovies = await getMoviesList("top_rated");
+const popularMovies = await getMoviesList("popular");
 const Homepage = () => {
   return (
     <div>
@@ -23,17 +23,15 @@ const Homepage = () => {
         </div>
 
         <div>
-          <Upcoming slice1={0} slice2={10}></Upcoming>
+          <Upcoming movies={upcomingMovies}></Upcoming>
         </div>
         <div>
-          <Popular slice1={0} slice2={10}></Popular>
+          <Popular movies={popularMovies}></Popular>
         </div>
         <div>
-          <TopRated slice1={0} slice2={10}></TopRated>
+          <TopRated movies={topRatedMovies}></TopRated>
         </div>
-        <div className="mt-10">
-          <PaginationDemo></PaginationDemo>
-        </div>
+        <div className="mt-10"></div>
       </div>
     </div>
   );

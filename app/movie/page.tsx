@@ -6,27 +6,24 @@ import {
   GetmoviesMorelikethis,
   GetmoviesTrailer,
 } from "../../utils/get-data";
-import { Moviecard } from "@/components/home/Moviecard";
 import { Moviedescribecard } from "@/components/home/Moviedescribe";
-import { Button } from "@/components/ui/button";
+import { Moviecard } from "@/components/home/Moviecard";
+
+import MovieLikeThis from "@/components/home/MovieLikeThis"; // ✅ Client wrapper
 
 type MovieidPageProps = {
-  searchParams: Promise<{ id: string }>;
+  searchParams: { id: string };
 };
+
 const Movieid = async ({ searchParams }: MovieidPageProps) => {
-  const params = await searchParams;
-  const id = params.id;
-  console.log("endehid", id);
+  const id = searchParams.id;
+
   const Moviebyid: MovieType = await Getmoviesdescribtion(id);
   const Moviedirectorname: Directorname = await GetmoviesDirectorsname(id);
   const MorelikeThis: movieResponseType = await GetmoviesMorelikethis(id);
   const Movietrailer: movieResponseType = await GetmoviesTrailer(id);
 
   const trailer = Movietrailer.results.find((item) => item.type === "Trailer");
-
-  console.log("Movietrailer", Movietrailer);
-
-  console.log("Morelikethis", MorelikeThis);
 
   return (
     <div>
@@ -45,25 +42,10 @@ const Movieid = async ({ searchParams }: MovieidPageProps) => {
         vote_count={Moviebyid.vote_count}
         Movietrailer={trailer?.key}
         type={trailer?.name}
-      ></Moviedescribecard>
+      />
 
-      <div className="flex justify-between mt-10 ml-42 w-[1200px]">
-        {" "}
-        <div className="text-4xl font-bold">More like this</div>{" "}
-        <Button>See more</Button>
-      </div>
-      <div className="flex  gap-6 ml-42 mt-10 flex-wrap w-[1280px]">
-        {" "}
-        {MorelikeThis.results.slice(0, 5).map((movie) => (
-          <Moviecard
-            key={movie.id}
-            title={movie.title}
-            Score={movie.vote_average}
-            Image={movie.poster_path}
-            id={movie.id}
-          ></Moviecard>
-        ))}
-      </div>
+      {/* ✅ Client-side “More like this” section */}
+      <MovieLikeThis MorelikeThis={MorelikeThis} />
     </div>
   );
 };
