@@ -12,7 +12,7 @@ import {
 import { GiPlayButton } from "react-icons/gi";
 type Youtubeprops = {
   Movietrailer: any;
-  title: string;
+  title?: string;
   image: string;
 };
 

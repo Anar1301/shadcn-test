@@ -23,13 +23,13 @@ const Homepage = () => {
         </div>
 
         <div>
-          <Upcoming slice1={0} slice2={20}></Upcoming>
+          <Upcoming slice1={0} slice2={10}></Upcoming>
         </div>
         <div>
-          <Popular slice1={0} slice2={20}></Popular>
+          <Popular slice1={0} slice2={10}></Popular>
         </div>
         <div>
-          <TopRated slice1={0} slice2={20}></TopRated>
+          <TopRated slice1={0} slice2={10}></TopRated>
         </div>
         <div className="mt-10">
           <PaginationDemo></PaginationDemo>

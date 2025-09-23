@@ -17,6 +17,7 @@ export type MovieType = {
   src: string;
   type: string;
   key: string;
+  genre: any;
 };
 
 export type movieResponseType = {
@@ -27,8 +28,11 @@ export type movieResponseType = {
   name: string;
   key: string;
   type: string;
+  genre: any;
 };
-
+export type genreResponsiveType = {
+  genres: GenreType[];
+};
 export type CrewType = {
   job: string;
   name: string;

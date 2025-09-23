@@ -6,7 +6,6 @@ import { getGenremovies } from "../../utils/get-data";
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Getmoviesdescribtion } from "../../utils/get-data";
 
 type GenrePageProps = {
   searchParams: Promise<{ id: string; page: string }>;

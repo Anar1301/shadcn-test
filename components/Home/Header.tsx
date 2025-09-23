@@ -4,6 +4,7 @@ import { SearchInput } from "@/components/ui/input";
 import { IoIosSearch } from "react-icons/io";
 import Link from "next/link";
 import { SearchSection } from "./SearchSection";
+import SearchPage from "@/app/search/page";
 
 export async function Header() {
   return (
@@ -16,15 +17,11 @@ export async function Header() {
       </div>
       <div className="flex gap-3">
         <Genrepage></Genrepage>
-        <div className="flex items-center gap-2 h-[36px] w-[355px] border rounded-md">
-          <IoIosSearch className="ml-2" />
-          <SearchInput
-            type="search"
-            placeholder="Search ..."
-            className="w-[379px] h-[36px] border-0"
-          />
-          <SearchSection />
-        </div>
+        {/* <div className="flex items-center gap-2 h-[36px] w-[242px] border rounded-md"> */}
+        {/* <IoIosSearch className="ml-2" /> */}
+        <SearchSection />
+
+        {/* </div> */}
       </div>
       <ModeToggle></ModeToggle>
     </div>

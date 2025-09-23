@@ -15,7 +15,7 @@ type MovieCardProps = {
   cast: CrewType[];
   vote_count: number;
   Movietrailer: any;
-  type: string;
+  type?: string;
 };
 
 export const Moviedescribecard = ({
@@ -103,7 +103,8 @@ export const Moviedescribecard = ({
               if (
                 crew.job === "Story" ||
                 crew.job === "Novel" ||
-                crew.job === "Original Story"
+                crew.job === "Original Story" ||
+                crew.job === "Producer"
               ) {
                 return <div key={crew.id}>{crew.name}</div>;
               }

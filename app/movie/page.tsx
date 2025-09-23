@@ -22,6 +22,8 @@ const Movieid = async ({ searchParams }: MovieidPageProps) => {
   const MorelikeThis: movieResponseType = await GetmoviesMorelikethis(id);
   const Movietrailer: movieResponseType = await GetmoviesTrailer(id);
 
+  const trailer = Movietrailer.results.find((item) => item.type === "Trailer");
+
   console.log("Movietrailer", Movietrailer);
 
   console.log("Morelikethis", MorelikeThis);
@@ -41,8 +43,8 @@ const Movieid = async ({ searchParams }: MovieidPageProps) => {
         crew={Moviedirectorname.crew}
         cast={Moviedirectorname.cast}
         vote_count={Moviebyid.vote_count}
-        Movietrailer={Movietrailer.results[1].key}
-        type={Movietrailer.results[0].name}
+        Movietrailer={trailer?.key}
+        type={trailer?.name}
       ></Moviedescribecard>
 
       <div className="flex justify-between mt-10 ml-42 w-[1200px]">
