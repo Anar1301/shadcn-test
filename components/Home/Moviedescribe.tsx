@@ -67,12 +67,6 @@ export const Moviedescribecard = ({
             title={type}
           ></Youtubedialog>
         </div>
-        <img
-          className=" "
-          src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-          height={428}
-          width={760}
-        ></img>
       </div>
       <div className="flex gap-4 mt-10">
         {genres.map((genre) => (

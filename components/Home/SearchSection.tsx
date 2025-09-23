@@ -30,7 +30,7 @@ export const SearchSection = () => {
 
   return (
     <div>
-      <Popover open={isOpen}>
+      <Popover open={true}>
         <PopoverTrigger>
           <SearchInput
             className="w-[380px] relative"
@@ -39,7 +39,11 @@ export const SearchSection = () => {
             placeholder="Search"
           />
         </PopoverTrigger>
-        <PopoverContent className="w-120 absolute -left-47.5">
+
+        <PopoverContent
+          className="w-120 absolute -left-47.5"
+          style={{ visibility: isOpen ? "visible" : "hidden" }}
+        >
           {foundMovies?.results.slice(0, 5).map((movie) => {
             return (
               <div className="w-full border-b-1 py-3 mb-4" key={movie.id}>

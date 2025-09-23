@@ -39,7 +39,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
       <div className="flex">
         {" "}
         <div className="flex flex-wrap w-[313px] h-[200px] ml-30 gap-4 justify-start ">
-          <div className="pl-2  mb-10">
+          <div className="pl-2  mb-8">
             <div className="text-[24px] font-semibold">Genre</div>
             <div className="pb-5 pt-2 text-[16px]">
               See lists of movies by genre
@@ -55,7 +55,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
                     </span>
                     <FaChevronRight
                       color="#09090B"
-                      className="w-[16px] h-[16px]"
+                      className="w-[10px] h-[10px]"
                     />
                   </Button>
                 </div>
