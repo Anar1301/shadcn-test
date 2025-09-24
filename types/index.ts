@@ -18,6 +18,7 @@ export type MovieType = {
   type: string;
   key: string;
   genre: any;
+  results: number;
 };
 
 export type movieResponseType = {
@@ -25,10 +26,12 @@ export type movieResponseType = {
   totalPages: number;
   id: number;
   results: MovieType[];
+  total_results: number;
   name: string;
   key: string;
   type: string;
   genre: any;
+  link: string;
 };
 export type genreResponsiveType = {
   genres: GenreType[];

@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { CrewType, GenreType } from "@/types";
 import { Youtubedialog } from "./YoutubeTrailer";
+
 type MovieCardProps = {
   title: string;
   Score: number;
@@ -22,7 +23,6 @@ export const Moviedescribecard = ({
   title,
   Score,
   Image,
-  id,
   releasedate,
   runtime,
   backdrop_path,
@@ -34,87 +34,88 @@ export const Moviedescribecard = ({
   type,
 }: MovieCardProps) => {
   return (
-    <div className="w-[1068px] h-fit ml-42">
-      {" "}
-      <div className="flex  justify-between w-[1068px]">
+    <div className="w-full max-w-6xl mx-auto px-4 py-6">
+      {/* Title and Rating */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
         <div>
-          <div>{title}</div>
-          <div>
-            {releasedate} PG {runtime}
-          </div>
+          <h1 className="text-2xl md:text-4xl font-bold">{title}</h1>
+          <p className="text-sm md:text-base text-gray-400">
+            {releasedate} • PG • {runtime} min
+          </p>
         </div>
 
-        <div>
-          {" "}
-          <div>Rating</div>
-          <div className="flex">
-            <FaStar color="yellow"></FaStar>
-            {Score}/10
-          </div>
+        <div className="flex items-center gap-2">
+          <FaStar color="#FACC15" className="w-5 h-5" />
+          <span className="text-lg md:text-xl font-semibold">{Score}/10</span>
         </div>
       </div>
-      <div className="flex gap-10 mt-10">
+
+      {/* Poster + Trailer */}
+      <div className="flex flex-col md:flex-row gap-6 mt-6">
         <img
           src={`https://image.tmdb.org/t/p/w500/${Image}`}
-          alt=""
-          className="w-[290px] h-[428px] object-cover"
+          alt={title}
+          className="w-full md:w-[290px] h-auto md:h-[428px] object-cover rounded-lg"
         />
-
-        <div>
+        <div className="flex-1">
           <Youtubedialog
             image={backdrop_path}
             Movietrailer={Movietrailer}
             title={type}
-          ></Youtubedialog>
+          />
         </div>
       </div>
-      <div className="flex gap-4 mt-10">
+
+      {/* Genres */}
+      <div className="flex flex-wrap gap-2 mt-6">
         {genres.map((genre) => (
-          <div
+          <span
             key={genre.id}
-            className="border w-[100px] rounded-md border-white text-center"
+            className="px-3 py-1 border border-white rounded-md text-sm md:text-base"
           >
             {genre.name}
-          </div>
+          </span>
         ))}
       </div>
-      <div className="mt-10">{overview}</div>
-      <div className="text-2xl font-bold flex flex-col gap-4 mt-10">
-        <div className="flex  items-center gap-10">
-          <div> Director</div>
-          <div className="text-[16px] font-normal">
-            {crew.map((crew) => {
-              if (crew.job === "Director") {
-                return <div key={crew.id}>{crew.name}</div>;
-              }
-            })}
+
+      {/* Overview */}
+      <p className="mt-6 text-sm md:text-base leading-relaxed">{overview}</p>
+
+      {/* Crew & Cast */}
+      <div className="mt-6 space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+          <span className="font-semibold w-24">Director:</span>
+          <div className="flex flex-wrap gap-2">
+            {crew
+              .filter((c) => c.job === "Director")
+              .map((c) => (
+                <span key={c.id}>{c.name}</span>
+              ))}
           </div>
         </div>
-        <div className="flex  items-center gap-10">
-          <div> Writers</div>
-          <div className="text-[16px] font-normal">
-            {crew.map((crew) => {
-              if (
-                crew.job === "Story" ||
-                crew.job === "Novel" ||
-                crew.job === "Original Story" ||
-                crew.job === "Producer"
-              ) {
-                return <div key={crew.id}>{crew.name}</div>;
-              }
-            })}
+
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+          <span className="font-semibold w-24">Writers:</span>
+          <div className="flex flex-wrap gap-2">
+            {crew
+              .filter((c) =>
+                ["Story", "Novel", "Original Story", "Producer"].includes(c.job)
+              )
+              .map((c) => (
+                <span key={c.id}>{c.name}</span>
+              ))}
           </div>
         </div>
-        <div className="flex  items-center gap-10">
-          <div> Stars</div>
-          <div className="text-[16px] font-normal flex  gap-4">
-            {cast.slice(0, 3).map((cast) => {
-              return <div key={cast.id}>{cast.name}</div>;
-            })}
+
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+          <span className="font-semibold w-24">Stars:</span>
+          <div className="flex flex-wrap gap-2">
+            {cast.slice(0, 3).map((c) => (
+              <span key={c.id}>{c.name}</span>
+            ))}
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 };

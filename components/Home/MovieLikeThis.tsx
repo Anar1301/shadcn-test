@@ -11,7 +11,7 @@ type MovieLikeThisProps = {
 };
 
 export default function MovieLikeThis({ MorelikeThis }: MovieLikeThisProps) {
-  const INITIAL_COUNT = 5; // show first 5
+  const INITIAL_COUNT = 5;
   const [expanded, setExpanded] = useState(false);
 
   const moviesToShow = expanded
@@ -21,24 +21,28 @@ export default function MovieLikeThis({ MorelikeThis }: MovieLikeThisProps) {
   const toggleExpanded = () => setExpanded((prev) => !prev);
 
   return (
-    <div>
-      <div className="flex justify-between mt-10 ml-42 w-[1200px]">
-        <div className="text-4xl font-bold">More like this</div>
+    <div className="max-w-7xl mx-auto px-4 mt-10">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">More like this</h2>
         {MorelikeThis.results.length > INITIAL_COUNT && (
-          <Button onClick={toggleExpanded}>
-            {expanded ? "Show less" : "See more"} <FaChevronRight />
+          <Button
+            onClick={toggleExpanded}
+            className="bg-white text-black flex items-center gap-2"
+          >
+            {expanded ? "Show less" : "See more"}
+            <FaChevronRight className="w-4 h-4" />
           </Button>
         )}
       </div>
 
-      <div className="flex gap-6 ml-42 mt-10 flex-wrap w-[1280px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 auto-rows-fr">
         {moviesToShow.map((movie) => (
           <Moviecard
             key={movie.id}
+            id={movie.id}
             title={movie.title}
             Score={movie.vote_average}
             Image={movie.poster_path}
-            id={movie.id}
           />
         ))}
       </div>

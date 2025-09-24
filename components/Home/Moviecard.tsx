@@ -1,15 +1,14 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
+  CardDescription,
 } from "@/components/ui/card";
 import { FaStar } from "react-icons/fa";
-import Link from "next/link";
 
 type MovieCardProps = {
   title: string;
@@ -20,28 +19,28 @@ type MovieCardProps = {
 
 export const Moviecard = ({ title, Score, Image, id }: MovieCardProps) => {
   return (
-    <div>
-      <Link href={`/movie?id=${id}`}>
-        <Card className="h-[440px] w-[230px] bg-secondary p-0 overflow-hidden gap-2 px-0">
-          <CardContent className="w-[230px] h-[340px] px-0">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${Image}`}
-              alt=""
-              className="w-[230px] h-[340px] object-cover"
-            />
-          </CardContent>
-          <CardFooter className="flex flex-col items-start p-2">
-            <CardDescription className="flex gap-2">
-              <span className="flex gap-2 items-center">
-                {" "}
-                <FaStar color="#FDE047" />
-                <span className="text-[14px]"> {Score}</span> /10
-              </span>
-            </CardDescription>
-            <CardTitle className="pt-2">{title}</CardTitle>
-          </CardFooter>
-        </Card>
-      </Link>
-    </div>
+    <Link href={`/movie?id=${id}`}>
+      <Card className="bg-secondary rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200">
+        {/* Movie Poster */}
+        <CardContent className="relative w-full aspect-[2/3] p-0">
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${Image}`}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        </CardContent>
+
+        {/* Footer */}
+        <CardFooter className="flex flex-col p-2 gap-1">
+          <CardDescription className="flex items-center gap-1 text-sm">
+            <FaStar color="#FDE047" />
+            <span>{Score}</span>/10
+          </CardDescription>
+          <CardTitle className="text-base font-semibold line-clamp-2">
+            {title}
+          </CardTitle>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 };

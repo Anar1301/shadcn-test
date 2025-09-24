@@ -30,7 +30,12 @@ export const SearchSection = () => {
 
   return (
     <div>
-      <Popover open={true}>
+      <Popover
+        open={isOpen}
+        onOpenChange={() => {
+          setIsOpen(false);
+        }}
+      >
         <PopoverTrigger>
           <SearchInput
             className="w-[380px] relative"

@@ -7,11 +7,11 @@ import { Moviecard } from "./Moviecard";
 import { movieResponseType } from "../../types";
 
 type TopRatedProps = {
-  movies: movieResponseType; // pass movies from parent
+  movies: movieResponseType;
 };
 
 export default function TopRated({ movies }: TopRatedProps) {
-  const INITIAL_COUNT = 10; // first 6 movies
+  const INITIAL_COUNT = 10;
   const [expanded, setExpanded] = useState(false);
 
   const moviesToShow = expanded
@@ -21,20 +21,25 @@ export default function TopRated({ movies }: TopRatedProps) {
   const toggleExpanded = () => setExpanded((prev) => !prev);
 
   return (
-    <div>
-      <div className="flex justify-between pl-30 pt-10">
-        <div className="text-[24px] font-semibold">Top rated</div>
+    <div className="w-full max-w-7xl mx-auto px-4 py-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h2 className="text-2xl font-semibold">Top Rated</h2>
 
         {movies.results.length > INITIAL_COUNT && (
-          <Button className="bg-white text-black" onClick={toggleExpanded}>
-            {expanded ? "Show less" : "See more"}{" "}
-            <FaChevronRight color="black" className="w-[16px] h-[16px]" />
+          <Button
+            className="bg-white text-black flex items-center gap-2"
+            onClick={toggleExpanded}
+          >
+            {expanded ? "Show less" : "See more"}
+            <FaChevronRight className="w-4 h-4" />
           </Button>
         )}
       </div>
 
-      <div className="ml-40 mt-10">
-        <div className="flex flex-wrap gap-4">
+      {/* Movies Grid */}
+      <div className="mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {moviesToShow.map((movie) => (
             <Moviecard
               key={movie.id}

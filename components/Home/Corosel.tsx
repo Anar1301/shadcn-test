@@ -9,13 +9,23 @@ import {
   CarouselApi,
 } from "@/components/ui/carousel";
 import { FaStar } from "react-icons/fa";
-
 import { Button } from "@/components/ui/button";
 import { MdOutlinePlayArrow } from "react-icons/md";
 import { MovieType } from "../../types";
+import { GiPlayButton } from "react-icons/gi";
+import { title } from "process";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
 
 type MovieCarouselProps = {
   movies: MovieType[];
+  Movietrailer: string | undefined;
+  title?: string;
+  image: string;
 };
 
 export const Corosel = ({ movies }: MovieCarouselProps) => {
@@ -24,9 +34,7 @@ export const Corosel = ({ movies }: MovieCarouselProps) => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
@@ -35,100 +43,84 @@ export const Corosel = ({ movies }: MovieCarouselProps) => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
+
   return (
     <Carousel setApi={setApi}>
-      {" "}
-      <CarouselContent className="m-auto">
-        {movies.slice(0, 10).map((movie, image) => {
-          return (
-            <CarouselItem
-              key={movie.id}
-              className="text-white w-[1440px] h-[600px] relative"
-            >
-              <img
-                className="absolute inset-0"
-                src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                height={600}
-                width={1440}
-              ></img>
-              <div className="pt-[178px] pl-[140px] absolute ">
-                <p>Now Playing :</p>
-                <p className="text-[36px] font-bold">{movie.title}</p>
-                <p className="flex gap-2 items-center text-[18px] pt-[10px]">
-                  <FaStar className="h-[28px] w-[28px]" color="#FDE047" />
-                  {movie.vote_average}
-                  <span className="text-[16px] color-[#71717A]">/10</span>
-                </p>
-                <p className="w-[500px] text-[12px] font-normal pt-[26px]">
-                  {movie.overview}
-                </p>
-                <Button className="bg-white text-black mt-4">
-                  <MdOutlinePlayArrow />
-                  Watch Trailer
-                </Button>
-              </div>
-            </CarouselItem>
-          );
-        })}
+      <CarouselContent>
+        {movies.slice(0, 10).map((movie) => (
+          <CarouselItem
+            key={movie.id}
+            className="relative text-white w-full h-[50vh] md:h-[70vh] lg:h-[50vh]"
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+              alt={movie.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
 
-        {/* <CarouselItem className="text-white w-[1440px] h-[600px] bg-[url(https://assets.murphysmultiverse.com/uploads/2022/02/knight.jpg)] bg-no-repeat bg-cover bg-center">
-          <div className="pt-[178px] pl-[140px]">
-            <p>Now Playing :</p>
-            <p className="text-[36px] font-bold">Batman arkham city</p>
-            <p className="flex gap-2 items-center">
-              <FaStar color="#FDE047" />
-              8/10
-            </p>
-            <p className="w-[500px] text-[12px] font-normal pt-[26px]">
-              {" "}
-              Elphaba, a misunderstood young woman because of her green skin,
-              and Glinda, a popular girl, become friends at Shiz University in
-              the Land of Oz. After an encounter with the Wonderful Wizard of
-              Oz, their friendship reaches a crossroads.
-            </p>
-            <Button className="bg-white text-black mt-4">
-              <MdOutlinePlayArrow />
-              Watch Trailer
-            </Button>
-          </div>
-        </CarouselItem>
-        <CarouselItem className="text-white w-[1440px] h-[600px] bg-[url(https://wallpapers.com/images/hd/demon-slayer-anime-to-the-swordsmith-village-05crqo0e0fzkql5q.jpg)] bg-no-repeat bg-cover bg-center">
-          <div className="pt-[178px] pl-[140px]">
-            <p>Now Playing :</p>
-            <p className="text-[36px] font-bold">Demon Slayer</p>
-            <p className="flex gap-2 items-center">
-              <FaStar color="#FDE047" />
-              8.3/10
-            </p>
-            <p className="w-[500px] text-[12px] font-normal pt-[26px]">
-              {" "}
-              Elphaba, a misunderstood young woman because of her green skin,
-              and Glinda, a popular girl, become friends at Shiz University in
-              the Land of Oz. After an encounter with the Wonderful Wizard of
-              Oz, their friendship reaches a crossroads.
-            </p>
-            <Button className="bg-white text-black mt-4">
-              <MdOutlinePlayArrow />
-              Watch Trailer
-            </Button>
-          </div>
-        </CarouselItem> */}
+            {/* Overlay gradient for readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+
+            <div className="absolute top-1/2 left-6 md:left-20 -translate-y-1/2 max-w-[90%] md:max-w-[600px]">
+              <p className="text-sm md:text-base">Now Playing :</p>
+              <p className="text-xl md:text-3xl lg:text-5xl font-bold">
+                {movie.title}
+              </p>
+
+              <p className="flex gap-2 items-center text-sm md:text-lg pt-2">
+                <FaStar className="h-5 w-5 md:h-7 md:w-7" color="#FDE047" />
+                {movie.vote_average}
+                <span className="text-gray-300 text-xs md:text-sm">/10</span>
+              </p>
+
+              <p className="text-xs md:text-sm font-normal pt-4 line-clamp-3">
+                {movie.overview}
+              </p>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="absolute top-70 left-4 rounded-full flex items-center gap-2 bg-white text-black">
+                    <GiPlayButton /> Play Trailer
+                  </Button>
+                </DialogTrigger>
+
+                <DialogContent className="w-full max-w-3xl aspect-video p-0 bg-black">
+                  <DialogTitle></DialogTitle>
+                  {/* <div
+                    className="relative w-[1400px] h-[760px] mt-[-100px] ml-[-400px]"
+                    style={{ paddingBottom: "56.25%" }}
+                  >
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${Movietrailer}`}
+                      title={title}
+                      className="absolute top-0 left-0 w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div> */}
+                </DialogContent>
+              </Dialog>
+            </div>
+          </CarouselItem>
+        ))}
       </CarouselContent>
-      <CarouselPrevious className="left-[20px]" />
-      <CarouselNext className="right-[40px]" />
-      <div className="flex gap-2 items-center justify-center mt-10">
+
+      <CarouselPrevious className="left-2 md:left-5" />
+      <CarouselNext className="right-2 md:right-5" />
+
+      {/* Dots */}
+      <div className="flex gap-2 items-center justify-center mt-6">
         {Array.from({ length: count })
           .slice(0, 10)
           .map((_, index) => (
             <div
-              onClick={() => {
-                api?.scrollTo(index);
-              }}
+              onClick={() => api?.scrollTo(index)}
               key={index}
-              className={`rounded-full size-4 ${
+              className={`rounded-full size-2 md:size-3 lg:size-4 cursor-pointer transition-colors ${
                 index + 1 === current ? "bg-white" : "bg-gray-600"
               }`}
-            ></div>
+            />
           ))}
       </div>
     </Carousel>

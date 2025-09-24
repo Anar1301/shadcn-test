@@ -1,8 +1,9 @@
+"use client";
+
 import { Moviecard } from "@/components/home/Moviecard";
 import { movieResponseType } from "../../types";
-import { getMoviesbygenreid, getMoviesList } from "../../utils/get-data";
+import { getMoviesbygenreid, getGenremovies } from "../../utils/get-data";
 import { PaginationDemo } from "@/components/home/Paginition";
-import { getGenremovies } from "../../utils/get-data";
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,61 +25,57 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
   const Genremoviesresponse = await getGenremovies();
 
   return (
-    <div>
-      <div className="flex gap-33">
-        <div className="text-4xl font-bold ml-30 mt-20 mb-10">
-          Search Filter
-        </div>
-        <div className="text-4xl font-bold ml-30 mt-20 mb-10">
-          {" "}
-          {filteredMoviesResponse.results.length} titles in {}
-        </div>
-        <div></div>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <h2 className="text-4xl font-bold">Search Filter</h2>
+        <h2 className="text-4xl font-bold">
+          {filteredMoviesResponse.total_results} titles
+        </h2>
       </div>
 
-      <div className="flex">
-        {" "}
-        <div className="flex flex-wrap w-[313px] h-[200px] ml-30 gap-4 justify-start ">
-          <div className="pl-2  mb-8">
-            <div className="text-[24px] font-semibold">Genre</div>
-            <div className="pb-5 pt-2 text-[16px]">
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Genre Sidebar */}
+        <div className="flex-shrink-0 w-full lg:w-72">
+          <div className="mb-4">
+            <div className="text-2xl font-semibold">Genre</div>
+            <div className="text-base pt-1 pb-3">
               See lists of movies by genre
             </div>
           </div>
-          {Genremoviesresponse.genres.map(
-            (genre: { id: string; name: string }) => (
-              <Link key={genre.id} href={`/genre?id=${genre.id}`}>
-                <div className="border border-white rounded-md   ">
-                  <Button className="flex items-center gap-2 ">
-                    <span className="text-[12px] font-semibold ">
-                      {genre.name}
-                    </span>
-                    <FaChevronRight
-                      color="#09090B"
-                      className="w-[10px] h-[10px]"
-                    />
+          <div className="flex flex-wrap gap-2">
+            {Genremoviesresponse.genres.map(
+              (genre: { id: string; name: string }) => (
+                <Link key={genre.id} href={`/genre?id=${genre.id}&page=1`}>
+                  <Button className="flex items-center gap-2 w-full justify-between">
+                    <span className="text-sm font-semibold">{genre.name}</span>
+                    <FaChevronRight className="w-4 h-4" />
                   </Button>
-                </div>
-              </Link>
-            )
-          )}
-        </div>{" "}
-        <div className="flex flex-wrap gap-3 w-[970px] ml-[140px]">
-          {filteredMoviesResponse.results.slice(0, 10).map((movie) => (
-            <Moviecard
-              id={movie.id}
-              key={movie.id}
-              title={movie.title}
-              Score={movie.vote_average}
-              Image={movie.poster_path}
-            />
-          ))}
+                </Link>
+              )
+            )}
+          </div>
+        </div>
+
+        {/* Movies Grid */}
+        <div className="flex-1">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {filteredMoviesResponse.results.slice(0, 10).map((movie) => (
+              <Moviecard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                Score={movie.vote_average}
+                Image={movie.poster_path}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="mt-10 ml-165">
-        {" "}
-        <PaginationDemo></PaginationDemo>
+      {/* Pagination */}
+      <div className="mt-6 flex justify-center">
+        <PaginationDemo />
       </div>
     </div>
   );

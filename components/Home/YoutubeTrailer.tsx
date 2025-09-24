@@ -1,53 +1,53 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { GiPlayButton } from "react-icons/gi";
+
 type Youtubeprops = {
-  Movietrailer: any;
+  Movietrailer: string | undefined;
   title?: string;
   image: string;
 };
 
 export function Youtubedialog({ Movietrailer, title, image }: Youtubeprops) {
-  console.log("GG", Movietrailer);
-  console.log(title);
   return (
-    <div className="h-[430px] w-[880px] bg-gray-400 flex items-end pb-10 pl-10  relative">
+    <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden">
+      {/* Background Image */}
       <img
         src={`https://image.tmdb.org/t/p/original/${image}`}
-        height={400}
-        width={880}
-        className="absolute inset-0 h-[430px] object-cover"
-      ></img>{" "}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Play Button */}
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" className="absolute rounded-full">
-            <GiPlayButton /> Play trailer
+          <Button className="absolute bottom-4 left-4 rounded-full flex items-center gap-2 bg-white text-black">
+            <GiPlayButton /> Play Trailer
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="mt-[-100px] ml-[-400px] w-[1000px] h-[561px] ">
+        <DialogContent className="w-full max-w-3xl aspect-video p-0 bg-black">
           <DialogTitle></DialogTitle>
-          <iframe
-            width={1000}
-            height={561}
-            src={`https://www.youtube-nocookie.com/embed/${Movietrailer}`}
-            // src="https://www.youtube.com/watch?v=x7uLutVRBfI"
-
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title={title}
-            className="absolute inset-0 block "
-          ></iframe>
+          <div
+            className="relative w-[1400px] h-[760px] mt-[-100px] ml-[-400px]"
+            style={{ paddingBottom: "56.25%" }}
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${Movietrailer}`}
+              title={title}
+              className="absolute top-0 left-0 w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </div>
