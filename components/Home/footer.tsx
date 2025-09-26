@@ -34,7 +34,7 @@ export const Footer = () => {
 
         {/* Social Links */}
         <div>
-          <h3 className="font-semibold mb-3">Follow us</h3>
+          <h3 className="font-semibold mb-3">Follow us: </h3>
           <div className="flex gap-4">
             <a href="#" className="hover:underline">
               Facebook

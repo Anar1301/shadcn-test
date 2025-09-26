@@ -1,5 +1,3 @@
-"use client";
-
 import { Moviecard } from "@/components/home/Moviecard";
 import { movieResponseType } from "../../types";
 import { getMoviesbygenreid, getGenremovies } from "../../utils/get-data";
@@ -25,16 +23,16 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
   const Genremoviesresponse = await getGenremovies();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 sm:w-[1440px]">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h2 className="text-4xl font-bold">Search Filter</h2>
-        <h2 className="text-4xl font-bold">
+        <h2 className="text-4xl font-bold  mt-20 mb-10 ml-30 sm:block hidden">
           {filteredMoviesResponse.total_results} titles
         </h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="sm:flex flex-col lg:flex-row gap-6">
         {/* Genre Sidebar */}
         <div className="flex-shrink-0 w-full lg:w-72">
           <div className="mb-4">
@@ -43,7 +41,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
               See lists of movies by genre
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="sm:flex flex-wrap gap-2">
             {Genremoviesresponse.genres.map(
               (genre: { id: string; name: string }) => (
                 <Link key={genre.id} href={`/genre?id=${genre.id}&page=1`}>

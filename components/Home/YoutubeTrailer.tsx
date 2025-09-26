@@ -1,12 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { GiPlayButton } from "react-icons/gi";
 
 type Youtubeprops = {
@@ -33,8 +28,7 @@ export function Youtubedialog({ Movietrailer, title, image }: Youtubeprops) {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="w-full max-w-3xl aspect-video p-0 bg-black">
-          <DialogTitle></DialogTitle>
+        <DialogContent className="w-[1400px]  max-w-3xl aspect-video p-0 bg-black">
           <div
             className="relative w-[1400px] h-[760px] mt-[-100px] ml-[-400px]"
             style={{ paddingBottom: "56.25%" }}

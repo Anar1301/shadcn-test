@@ -23,9 +23,7 @@ import {
 
 type MovieCarouselProps = {
   movies: MovieType[];
-  Movietrailer: string | undefined;
-  title?: string;
-  image: string;
+  Movietrailer?: string;
 };
 
 export const Corosel = ({ movies }: MovieCarouselProps) => {
@@ -77,30 +75,9 @@ export const Corosel = ({ movies }: MovieCarouselProps) => {
                 {movie.overview}
               </p>
 
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="absolute top-70 left-4 rounded-full flex items-center gap-2 bg-white text-black">
-                    <GiPlayButton /> Play Trailer
-                  </Button>
-                </DialogTrigger>
-
-                <DialogContent className="w-full max-w-3xl aspect-video p-0 bg-black">
-                  <DialogTitle></DialogTitle>
-                  {/* <div
-                    className="relative w-[1400px] h-[760px] mt-[-100px] ml-[-400px]"
-                    style={{ paddingBottom: "56.25%" }}
-                  >
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${Movietrailer}`}
-                      title={title}
-                      className="absolute top-0 left-0 w-full h-full"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div> */}
-                </DialogContent>
-              </Dialog>
+              <Button className="absolute top-70 left-4 rounded-full flex items-center gap-2 bg-white text-black">
+                <GiPlayButton /> Play Trailer
+              </Button>
             </div>
           </CarouselItem>
         ))}
@@ -110,7 +87,7 @@ export const Corosel = ({ movies }: MovieCarouselProps) => {
       <CarouselNext className="right-2 md:right-5" />
 
       {/* Dots */}
-      <div className="flex gap-2 items-center justify-center mt-6">
+      <div className="flex gap-2 items-center justify-center mt-10 w-[375px] sm:w-[1440px]">
         {Array.from({ length: count })
           .slice(0, 10)
           .map((_, index) => (

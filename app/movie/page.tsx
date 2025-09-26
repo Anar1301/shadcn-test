@@ -10,6 +10,9 @@ import { Moviedescribecard } from "@/components/home/Moviedescribe";
 import { Moviecard } from "@/components/home/Moviecard";
 
 import MovieLikeThis from "@/components/home/MovieLikeThis"; // ✅ Client wrapper
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { FaChevronRight } from "react-icons/fa";
 
 type MovieidPageProps = {
   searchParams: { id: string };
@@ -46,6 +49,15 @@ const Movieid = async ({ searchParams }: MovieidPageProps) => {
 
       {/* ✅ Client-side “More like this” section */}
       <MovieLikeThis MorelikeThis={MorelikeThis} />
+      <Link
+        // href={`/Morelikethis?id=${MorelikeThis.id}`}
+        href={`/Morelikethispage?id=${id}&title=${Moviebyid.title}`}
+      >
+        <Button>
+          See more{" "}
+          <FaChevronRight color="black" className="w-[16px] h-[16px]" />
+        </Button>
+      </Link>
     </div>
   );
 };
