@@ -38,7 +38,7 @@ export const GenrePageComp = async ({ searchParams }: GenrePageCompProps) => {
           Search filter
         </h2>
         <div className="sm:block hidden">
-          <ResizablePanelGroup>
+          <ResizablePanelGroup direction="horizontal">
             <ResizablePanel>
               <GenresListCard genres={movieGenresList.genres} id={id} />
             </ResizablePanel>
