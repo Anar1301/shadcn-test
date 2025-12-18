@@ -1,16 +1,16 @@
 import React from "react";
-// import Link from "next/link";
-// import { SearchListCard, SearchMobileComp } from "@/src/components/search";
-// import {
-//   MedMovieCard,
-//   NoResultsMsgComp,
-//   PaginationComp,
-// } from "@/src/components/general";
-// import {
-//   ResizableHandle,
-//   ResizablePanel,
-//   ResizablePanelGroup,
-// } from "@/src/components/ui";
+import Link from "next/link";
+import { SearchListCard, SearchMobileComp } from "@/src/components/search";
+import {
+  MedMovieCard,
+  NoResultsMsgComp,
+  PaginationComp,
+} from "@/src/components/general";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/src/components/ui";
 import { movieResponseType, genreResponseType } from "@/src/types";
 import { getMoviesBySearch, getGenresList } from "@/src/utils/get-data";
 
@@ -56,7 +56,7 @@ export const SearchPageComp = async ({ searchParams }: SearchPageCompProps) => {
           Search results
         </h2>
         <div className="sm:block hidden">
-          {/* <ResizablePanelGroup>
+          <ResizablePanelGroup direction="horizontal">
             <ResizablePanel collapsible>
               <div className="flex flex-col gap-8">
                 <h4 className="text-xl leading-7 font-semibold text-foreground">
@@ -91,9 +91,9 @@ export const SearchPageComp = async ({ searchParams }: SearchPageCompProps) => {
             <ResizablePanel>
               <SearchListCard searchValue={value} genreId={genreId} />
             </ResizablePanel>
-          </ResizablePanelGroup> */}
+          </ResizablePanelGroup>
         </div>
-        {/* 
+
         <SearchMobileComp
           movieGenresList={movieGenresList}
           resultNumber={resultNumber}
@@ -103,7 +103,7 @@ export const SearchPageComp = async ({ searchParams }: SearchPageCompProps) => {
           url={url}
           page={page}
           genreId={genreId}
-        /> */}
+        />
       </div>
     </div>
   );

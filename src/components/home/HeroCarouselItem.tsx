@@ -20,7 +20,7 @@ export const HeroCarouselItem = ({ movie }: { movie: MovieType }) => {
 
   useEffect(() => {
     getTrailerFunction();
-  }, []);
+  });
 
   return (
     <CarouselItem key={movie.id} className="basis-none">
