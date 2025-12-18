@@ -12,7 +12,7 @@ export const GenrePageSkeleton = () => {
     <div className="sm:w-[1440px] w-full m-auto sm:mt-13 mt-8 mb-8 sm:pl-20 sm:pr-32 px-5">
       <Skeleton className="sm:w-48 w-40 sm:h-9 h-8 rounded-full mb-8" />
       <div className="sm:block hidden">
-        <ResizablePanelGroup direction="horizontal">
+        <ResizablePanelGroup>
           <ResizablePanel>
             <Skeleton className="w-27 h-8 rounded-full mb-1" />
             <Skeleton className="w-54 h-6 rounded-full mb-5" />

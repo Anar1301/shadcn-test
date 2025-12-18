@@ -136,7 +136,7 @@ export const NavInputSearch = () => {
                 ))}
                 <Button asChild variant="link" onClick={handleSeeAllResults}>
                   <Link href={`/search?value=${searchValue}`}>
-                    See all results for "{searchValue}"
+                    See all results for {searchValue}
                   </Link>
                 </Button>
               </>

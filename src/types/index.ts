@@ -28,7 +28,7 @@ export type genreResponseType = {
 export type MovieDetailsType = {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: {};
+
   genres: GenreType[];
   id: number;
   overview: string;

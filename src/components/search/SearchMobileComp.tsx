@@ -33,7 +33,7 @@ export const SearchMobileComp = ({
     <div className="sm:hidden block">
       <div className="flex flex-col gap-8 mb-8">
         <h4 className="text-xl leading-7 font-semibold text-foreground">
-          {resultNumber.toLocaleString("en")} results for "{value}"{" "}
+          {resultNumber.toLocaleString("en")} results for {value}{" "}
           {genreId &&
             movieGenresList.genres
               .filter((genre) => genre.id === Number(genreId))

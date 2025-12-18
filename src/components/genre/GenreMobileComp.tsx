@@ -28,7 +28,7 @@ export const GenreMobileComp = ({
       <div className="flex flex-col gap-8 mt-8">
         <h4 className="w-full text-xl leading-7 font-semibold text-foreground">
           {filteredMoviesByGenreId.total_results.toLocaleString("en")} titles in
-          "{name}"
+          {name}
         </h4>
         <div className="flex flex-wrap gap-5">
           {filteredMoviesByGenreId.results.slice(0, 18).map((movie) => (

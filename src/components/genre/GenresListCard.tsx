@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { GenreType, MovieType } from "@/src/types";
+import { GenreType } from "@/src/types";
 import { FaChevronRight } from "react-icons/fa6";
 import {
   Card,

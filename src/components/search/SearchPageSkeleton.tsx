@@ -12,7 +12,7 @@ export const SearchPageSkeleton = () => {
     <div className="sm:w-[1440px] w-full m-auto sm:mt-13 sm:mb-[344px] my-8 sm:px-20 px-5">
       <Skeleton className="sm:w-52 w-40 sm:h-9 h-8 rounded-full mb-8" />
       <div className="sm:block hidden">
-        <ResizablePanelGroup direction="horizontal">
+        <ResizablePanelGroup>
           <ResizablePanel>
             <Skeleton className="w-70 h-7 rounded-full mb-8" />
             <div className="flex flex-wrap gap-y-8 gap-x-12">

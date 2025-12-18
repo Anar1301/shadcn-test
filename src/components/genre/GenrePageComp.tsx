@@ -38,7 +38,7 @@ export const GenrePageComp = async ({ searchParams }: GenrePageCompProps) => {
           Search filter
         </h2>
         <div className="sm:block hidden">
-          <ResizablePanelGroup direction="horizontal">
+          <ResizablePanelGroup>
             <ResizablePanel>
               <GenresListCard genres={movieGenresList.genres} id={id} />
             </ResizablePanel>
@@ -47,7 +47,7 @@ export const GenrePageComp = async ({ searchParams }: GenrePageCompProps) => {
               <div className="flex flex-wrap gap-y-8 gap-x-12">
                 <h4 className="w-full text-xl leading-7 font-semibold text-foreground">
                   {filteredMoviesByGenreId.total_results.toLocaleString("en")}{" "}
-                  titles in "{name}"
+                  titles in {name}
                 </h4>
                 {filteredMoviesByGenreId.results.slice(0, 18).map((movie) => (
                   <Link key={movie.id} href={`/details/${movie.id}`}>
