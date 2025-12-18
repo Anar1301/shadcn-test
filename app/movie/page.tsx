@@ -7,7 +7,6 @@ import {
   GetmoviesTrailer,
 } from "../../utils/get-data";
 import { Moviedescribecard } from "@/components/home/Moviedescribe";
-import { Moviecard } from "@/components/home/Moviecard";
 
 import MovieLikeThis from "@/components/home/MovieLikeThis"; // ✅ Client wrapper
 import Link from "next/link";

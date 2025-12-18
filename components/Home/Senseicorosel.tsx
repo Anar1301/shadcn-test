@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { url } from "inspector";
+
 type MovieType = {
   adult: boolean;
   backdrop_path: string;
@@ -23,30 +23,16 @@ type MovieType = {
   title: string;
   vote: number;
 };
-type movieResponseType = {
-  page: number;
-  totalPages: number;
-  results: MovieType[];
-};
+// type movieResponseType = {
+//   page: number;
+//   totalPages: number;
+//   results: MovieType[];
+// };
 
 type MovieCarouselProps = {
   movies: MovieType[];
 };
-const getUpcomingmovies = async () => {
-  const res = await fetch(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
-      },
-    }
-  );
-  const data = await res.json();
-  return data;
-};
-const upcomingMovies: movieResponseType = await getUpcomingmovies();
+// const upcomingMovies: movieResponseType = await getUpcomingmovies();
 export function MovieCarousel({ movies }: MovieCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);

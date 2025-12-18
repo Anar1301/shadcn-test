@@ -5,8 +5,7 @@ import { Button } from "../ui/button";
 import { FaChevronRight } from "react-icons/fa";
 import { Moviecard } from "./Moviecard";
 import { movieResponseType } from "../../types";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+
 type UpcomingProps = {
   movies: movieResponseType;
 };

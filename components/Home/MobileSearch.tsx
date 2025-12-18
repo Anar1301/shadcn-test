@@ -5,13 +5,8 @@ import { SearchSection } from "./SearchSection";
 import { Button } from "../ui/button";
 import { Search, X } from "lucide-react";
 import { Genrepage } from "./Genre";
-import { genreResponsiveType } from "@/types";
 
-export const MobileSearch = ({
-  genresResponse,
-}: {
-  genresResponse: genreResponsiveType;
-}) => {
+export const MobileSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="block sm:hidden">

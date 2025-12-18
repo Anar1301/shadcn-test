@@ -80,7 +80,7 @@ export const SearchSection = () => {
           })}
 
           <Link href={`/search?value=${searchValue}`}>
-            See all results for "{searchValue}"
+            See all results for {searchValue}
           </Link>
         </PopoverContent>
       </Popover>

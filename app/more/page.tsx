@@ -17,18 +17,12 @@ type MorePageProps = {
   params: Promise<{ link: string }>;
 };
 
-const MorePage = async ({ searchParams, params }: MorePageProps) => {
-  const dynamicRoute = await params;
-  const link = dynamicRoute.link;
-
-  // https://localhost:3000/seeMore/upcoming?page=1
-
+const MorePage = async ({ searchParams }: MorePageProps) => {
   const searchQuery = await searchParams;
   const title = searchQuery.title;
   const page = searchQuery.page || "1";
 
   const moviesRes: movieResponseType = await getMoviesList(title, page);
-  // /more?title=upcoming&page=3
 
   const currentUrl = `/more?title=${title}&`;
   return (

@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 type SearchGenrePageProps = {
-  searchParams: Promise<{ value: string; id: string; genre: any }>;
+  searchParams: Promise<{ value: string; id: string; genre: string }>;
 };
 
 const SearchPage = async ({ searchParams }: SearchGenrePageProps) => {

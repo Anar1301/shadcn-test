@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const Footer = () => {
   return (
     <footer className="w-full bg-[#4338CA] text-white mt-12">

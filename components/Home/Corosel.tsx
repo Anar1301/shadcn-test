@@ -10,16 +10,10 @@ import {
 } from "@/components/ui/carousel";
 import { FaStar } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { MdOutlinePlayArrow } from "react-icons/md";
+
 import { MovieType } from "../../types";
 import { GiPlayButton } from "react-icons/gi";
-import { title } from "process";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@radix-ui/react-dialog";
+import Image from "next/image";
 
 type MovieCarouselProps = {
   movies: MovieType[];
@@ -50,7 +44,7 @@ export const Corosel = ({ movies }: MovieCarouselProps) => {
             key={movie.id}
             className="relative text-white w-full h-[50vh] md:h-[70vh] lg:h-[50vh]"
           >
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
               alt={movie.title}
               className="absolute inset-0 w-full h-full object-cover"

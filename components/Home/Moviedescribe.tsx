@@ -15,7 +15,7 @@ type MovieCardProps = {
   crew: CrewType[];
   cast: CrewType[];
   vote_count: number;
-  Movietrailer: any;
+  Movietrailer: string | any;
   type?: string;
 };
 

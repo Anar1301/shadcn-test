@@ -3,19 +3,18 @@ import { Genrepage } from "./Genre";
 import { SearchSection } from "./SearchSection";
 import Link from "next/link";
 import { MobileSearch } from "./MobileSearch";
-import { genreResponsiveType } from "@/types";
-import { GetGenreList } from "@/utils/get-data";
+import Image from "next/image";
 
 export const Header = async () => {
-  const genresResponse: genreResponsiveType = await GetGenreList();
+  // const genresResponse: genreResponsiveType = await GetGenreList();
   return (
     <header className="w-full h-[60px] bg-white dark:bg-gray-900 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img
+          <Image
             className="w-5 h-5 hidden sm:block"
-            src="/logo.svg"
+            src="logo.svg"
             alt="Movie Z logo"
           />
           <h2 className="text-lg font-bold text-indigo-700">
@@ -29,7 +28,7 @@ export const Header = async () => {
           <div className="flex items-center gap-4">
             <SearchSection />
 
-            <MobileSearch genresResponse={genresResponse} />
+            <MobileSearch />
 
             {/* Theme Toggle */}
             <ModeToggle />
